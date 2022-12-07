@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "Windows_GCC",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "D:\\2022-2023_F2XGA_Template-main\\2022-2023_F2XGA_Template-main\\Windows\\include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "C:\\msys64\\mingw64\\bin\\g++.exe",
+            "cStandard": "gnu17",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "windows-gcc-x64"
+        }
+    ],
+    "version": 4
+}
