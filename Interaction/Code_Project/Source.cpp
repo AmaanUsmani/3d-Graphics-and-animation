@@ -71,7 +71,7 @@ void onMouseWheelCallback(GLFWwindow *window, double xoffset, double yoffset);
 
 // VARIABLES
 GLFWwindow *window;										// Keep track of the window
-auto windowWidth = 800;									// Window width
+auto windowWidth = 1000;								// Window width
 auto windowHeight = 800;								// Window height
 auto running(true);										// Are we still running our main loop
 mat4 projMatrix;										// Our Projection Matrix
@@ -239,7 +239,7 @@ void startup()
 
 	cout << endl
 		 << "Loading content..." << endl;
-	content.LoadGLTF("assets/barrel_fulltextures.gltf");
+	content.LoadGLTF("assets/openglrender.gltf");
 
 	pipeline.CreatePipeline();
 	pipeline.LoadShaders("shaders/vs_model.glsl", "shaders/fs_model.glsl");
@@ -267,17 +267,26 @@ void startup()
 void update()
 {
 	if (keyStatus[GLFW_KEY_LEFT])
-		modelRotation.y += 0.05f;
+		cameraPosition.x -= 0.04f;
 	if (keyStatus[GLFW_KEY_RIGHT])
-		modelRotation.y -= 0.05f;
+		cameraPosition.x += 0.04f;
 	if (keyStatus[GLFW_KEY_UP])
-		modelRotation.x += 0.05f;
+		cameraPosition.y += 0.04f;
 	if (keyStatus[GLFW_KEY_DOWN])
-		modelRotation.x -= 0.05f;
+		cameraPosition.y -= 0.04f;
 	if (keyStatus[GLFW_KEY_W])
-		modelPosition.z += 0.10f;
+		cameraPosition.z -= 0.10f;
 	if (keyStatus[GLFW_KEY_S])
-		modelPosition.z -= 0.10f;
+		cameraPosition.z += 0.10f;
+
+	if (keyStatus[GLFW_KEY_I])
+		modelRotation.x += 0.01f;
+	if (keyStatus[GLFW_KEY_K])
+		modelRotation.x -= 0.01f;
+	if (keyStatus[GLFW_KEY_J])
+		modelRotation.y += 0.01f;
+	if (keyStatus[GLFW_KEY_L])
+		modelRotation.y -= 0.01f;
 
 	if (keyStatus[GLFW_KEY_R])
 		pipeline.ReloadShaders();
@@ -318,7 +327,7 @@ void render()
 	glm::mat4 modelMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
 	modelMatrix = glm::rotate(modelMatrix, modelRotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
 	modelMatrix = glm::rotate(modelMatrix, modelRotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
-	modelMatrix = glm::scale(modelMatrix, glm::vec3(1.2f, 1.2f, 1.2f));
+	modelMatrix = glm::scale(modelMatrix, glm::vec3(2.0f, 1.0f, 0.1f));
 
 	glm::mat4 mv_matrix = viewMatrix * modelMatrix;
 
